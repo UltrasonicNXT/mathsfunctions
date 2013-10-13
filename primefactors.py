@@ -7,6 +7,7 @@ class Primefactors(mf.Mathsfunction):
         rem = a
 
         factors = {}
+        factors = []
     
         while rem != 1:
             for x in range(2, rem):
@@ -14,18 +15,13 @@ class Primefactors(mf.Mathsfunction):
                 while keepthis:
                     if rem%x == 0:
                         rem = rem/x
-                        if x in factors:
-                            factors[x] += 1
-                        else:
-                            factors[x] = 1
-
-                    
+                        factors.append(x)
                     else:
                         keepthis = False
         return factors
 
     def givehelp(self):
-        print "help"
+        return "help"
 
     def liststring(self, a):
         string = ""
@@ -35,12 +31,19 @@ class Primefactors(mf.Mathsfunction):
 
     def powerstring(self, a):
         string = ""
-        first = True  
+        factors = {}
         for x in a:
+            if x in factors:
+                factors[x] += 1
+            else:
+                factors[x] = 1
+                
+        first = True  
+        for x in factors:
             if not first:
                 string+= " x "
-            if a[x] > 1:
-                string += str(x)+"^"+str(a[x])
+            if factors[x] > 1:
+                string += str(x)+"^"+str(factors[x])
             else:
                 string += str(x)
             first = False
@@ -48,5 +51,6 @@ class Primefactors(mf.Mathsfunction):
 
     formats = ('liststring', 'powerstring')
 
-primefactors = Primefactors()
-primefactors.run()
+if __name__ == '__main__':
+    pf = Primefactors()
+    pf.run()

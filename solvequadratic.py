@@ -18,7 +18,7 @@ class Solvequadratic(mf.Mathsfunction):
         return xa, xb
 
     def givehelp(self):
-        print "help"
+        return "help"
 
     def liststring(self, a):
         string = ""
@@ -28,5 +28,5 @@ class Solvequadratic(mf.Mathsfunction):
 
     formats = ('liststring',s)
 
-solvequadratic = Solvequadratic()
-solvequadratic.run()
+sq = Solvequadratic()
+sq.run()

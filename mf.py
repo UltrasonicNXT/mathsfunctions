@@ -8,19 +8,19 @@ class Mathsfunction:
         inputslen = len(inspect.getargspec(self.solve)[0]) - 1
         for arg in sys.argv[1:]:
             if arg == '--help':
-                self.givehelp()
+                print self.givehelp()
                 return
             elif arg.startswith('-format'):
                 formatgiven = arg[8:]
                 if formatgiven in self.formats:
                     formatas = formatgiven
             else:
-                if len(inputs) < inputslen:
-                    inputs.append(int(arg))
-                else:
-                    raise ArguamentsError
-                    
-        self.result = self.solve(*inputs)
+                inputs.append(int(arg))
+              
+        if len(inputs) == inputslen:  
+            self.result = self.solve(*inputs)
+        else:
+            raise ArguamentsError    
 
         if not formatas:
             formatas = self.formats[0]
