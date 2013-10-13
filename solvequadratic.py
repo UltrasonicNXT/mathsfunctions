@@ -1,23 +1,32 @@
 import math, mf
 
-solvequadratic = mf.Mathsfunction()
+class Solvequadratic(mf.Mathsfunction):
+    
+    def solve(self, a):
 
-def main(a, b, c):
+        print str(a)+"x^2 + "+str(b)+"x + "+str(c)
 
-    working = (b*b) - (4*a*c)
-    working = math.sqrt(working)
-    xa = -b+working
-    xb = -b-working
-    xa = xa/2*a
-    xb = xb/2*a
+        working = (b*b) - (4*a*c)
+        working = math.sqrt(working)
+        xa = -b+working
+        xb = -b-working
+        xa = xa/2*a
+        xb = xb/2*a
 
-    print xa
-    print xb
+        if xa == xb:
+            return xa
+        return xa, xb
 
-def givehelp():
-    print "help"
+    def givehelp(self):
+        print "help"
 
-solvequadratic.main = main
-solvequadratic.givehelp = givehelp
+    def liststring(self, a):
+        string = ""
+        for x in a:
+            string += str(x)+" "
+        return string
 
+    formats = ('liststring',s)
+
+solvequadratic = Solvequadratic()
 solvequadratic.run()
