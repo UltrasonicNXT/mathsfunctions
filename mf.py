@@ -1,6 +1,7 @@
 import sys, inspect
 
 class Mathsfunction:
+    listinput = None
     
     def run(self):
         inputs = []
@@ -16,11 +17,13 @@ class Mathsfunction:
                     formatas = formatgiven
             else:
                 inputs.append(int(arg))
-              
-        if len(inputs) == inputslen:  
-            self.result = self.solve(*inputs)
+        if self.listinput:
+            self.result = self.solve(inputs)
         else:
-            raise ArguamentsError    
+            if len(inputs) == inputslen:
+                self.result = self.solve(*inputs)
+            else:
+                raise ArguamentLengthError    
 
         if not formatas:
             formatas = self.formats[0]
@@ -30,5 +33,14 @@ class Mathsfunction:
     def error(self, message):
         print message
 
-class ArguamentsError(Exception):
+class ArguamentLengthError(Exception):
     pass
+
+class ArguamentMathsError(Exception):
+    pass
+
+def diffs(array):
+    return [array[i+1]-x for i,x in enumerate(array[:-1])]
+
+def listequal(array):
+    return len(set(array)) == 1

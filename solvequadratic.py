@@ -2,7 +2,7 @@ import math, mf
 
 class Solvequadratic(mf.Mathsfunction):
     
-    def solve(self, a):
+    def solve(self, a, b, c):
 
         print str(a)+"x^2 + "+str(b)+"x + "+str(c)
 
@@ -26,7 +26,7 @@ class Solvequadratic(mf.Mathsfunction):
             string += str(x)+" "
         return string
 
-    formats = ('liststring',s)
+    formats = ('liststring',)
 
 sq = Solvequadratic()
 sq.run()
